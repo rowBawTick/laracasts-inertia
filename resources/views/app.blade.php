@@ -15,10 +15,8 @@
         @inertiaHead
     </head>
     <body class="font-sans antialiased">
-        <section class="p-8">
-            @inertia
-{{--        <!-- The line above is equal to the line below -->--}}
-{{--        <div id="app" data-page="{{ json_encode($page)  }}"></div>--}}
-        </section>
+        @inertia
+{{--    <!-- The line above is equal to the line below -->--}}
+{{--    <div id="app" data-page="{{ json_encode($page)  }}"></div>--}}
     </body>
 </html>

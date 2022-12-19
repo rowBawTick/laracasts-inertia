@@ -2,12 +2,12 @@
 import { ref } from 'vue';
 import { Inertia } from '@inertiajs/inertia';
 import { Head, Link } from '@inertiajs/inertia-vue3';
-import ApplicationMark from '@/Components/ApplicationMark.vue';
-import Banner from '@/Components/Banner.vue';
-import Dropdown from '@/Components/Dropdown.vue';
-import DropdownLink from '@/Components/DropdownLink.vue';
-import NavLink from '@/Components/NavLink.vue';
-import ResponsiveNavLink from '@/Components/ResponsiveNavLink.vue';
+import ApplicationMark from '@/js/Components/ApplicationMark.vue';
+import Banner from '@/js/Components/Banner.vue';
+import Dropdown from '@/js/Components/Dropdown.vue';
+import DropdownLink from '@/js/Components/DropdownLink.vue';
+import NavLink from '@/js/Components/NavLink.vue';
+import ResponsiveNavLink from '@/js/Components/ResponsiveNavLink.vue';
 
 defineProps({
     title: String,

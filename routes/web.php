@@ -26,7 +26,7 @@ Route::get('/', function () {
 
 Route::get('/themes', function() {
     return Inertia::render('Themes', [
-        'themes' => ['theme 1', 'theme 2', 'theme 3']
+        'themes' => ['theme 1', 'theme 2', 'theme 3'],
     ]);
 });
 

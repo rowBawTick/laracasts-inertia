@@ -1,6 +1,6 @@
 <script setup>
-import AppLayout from '@/Layouts/AppLayout.vue';
-import CreateTeamForm from '@/Pages/Teams/Partials/CreateTeamForm.vue';
+import AppLayout from '@/js/Layouts/AppLayout.vue';
+import CreateTeamForm from '@/js/Pages/Teams/Partials/CreateTeamForm.vue';
 </script>
 
 <template>
