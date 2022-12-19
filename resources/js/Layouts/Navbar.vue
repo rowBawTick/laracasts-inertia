@@ -10,10 +10,9 @@ export default {
 
 </style>
 <template>
-    <div>
-        Nav menu
-        <nav class="bg-white flex mt-6">
-            <ul class="flex gap-4 list-disc">
+    <div class="flex items-center">
+        <nav>
+            <ul class="flex list-disc space-x-4 list-inside">
                 <li><Link class="text-blue-500 hover:underline" href="/">Home</Link></li>
                 <li><Link class="text-blue-500 hover:underline" href="/users">Users</Link></li>
                 <li><Link class="text-blue-500 hover:underline" href="/settings">Settings</Link></li>

@@ -1,22 +1,21 @@
 <template>
-    <div>
-        <Navbar/>
+    <Layout>
         The users are:
         <div v-for="user in users">
             {{ user }}
         </div>
-    </div>
+    </Layout>
 </template>
 
 <script>
-import Navbar from "@/Layouts/Navbar.vue";
+import Layout from "@/js/Layouts/Layout.vue";
 
 export default {
     name: "Users",
     props: {
         users: Array,
     },
-    components: { Navbar },
+    components: { Layout },
 }
 </script>
 

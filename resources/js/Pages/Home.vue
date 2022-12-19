@@ -1,6 +1,6 @@
 <script>
 import { Head, Link } from '@inertiajs/inertia-vue3';
-import Navbar from "@/Layouts/Navbar.vue";
+import Layout from "@/js/Layouts/Layout.vue";
 
 // defineProps({
 //     canLogin: Boolean,
@@ -10,7 +10,7 @@ import Navbar from "@/Layouts/Navbar.vue";
 // });
 
 export default {
-    components: { Navbar, Link, Head },
+    components: { Link, Head, Layout },
     // defineProps: {
     //     canLogin,
     //     canRegister,
@@ -21,15 +21,17 @@ export default {
         canLogin: Boolean,
         canRegister: Boolean,
         laravelVersion: String,
-        phpVersion: String
+        phpVersion: String,
     }
 }
 </script>
 
 <template>
+    <Layout>
+        <h1 class="text-3xl font-bold">Home</h1>
+    </Layout>
     <div>
-        <h1 class="text-4xl font-bo4ld">Home</h1>
-        <Navbar></Navbar>
+
         <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center sm:pt-0">
             <div v-if="canLogin" class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
                 <Link v-if="$page.props.user" :href="route('dashboard')" class="text-sm text-gray-700 dark:text-gray-500 underline">Dashboard</Link>
@@ -42,7 +44,6 @@ export default {
             </div>
 
         </div>
-
     </div>
 
 </template>

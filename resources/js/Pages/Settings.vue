@@ -1,15 +1,16 @@
 <template>
     <div>
-        Settings
-        <Navbar></Navbar>
+        <Layout>
+            <h1 class="text-2xl">Settings</h1>
+        </Layout>
     </div>
 </template>
 
 <script>
-import Navbar from "@/Layouts/Navbar.vue";
+import Layout from "@/js/Layouts/Layout.vue";
 export default {
     name: "Settings",
-    components: { Navbar },
+    components: { Layout },
 
 }
 </script>
