@@ -1,3 +1,4 @@
+<!-- This is the default AppLayout from Inertia. Custom one is Layout.vue -->
 <script setup>
 import { ref } from 'vue';
 import { Inertia } from '@inertiajs/inertia';

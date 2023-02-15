@@ -3,7 +3,7 @@
         <header class="flex items-center justify-between">
             <div class="flex items-center">
                 <h1 class="text-xl font-bold">My App</h1>
-                <p class="ml-8">Welcome back {{ username }}!</p>
+                <p class="ml-8">Welcome back, {{ username }}!</p>
             </div>
             <Navbar></Navbar>
         </header>
@@ -23,7 +23,7 @@ export default {
     components: { Navbar },
     computed: {
         username() {
-            return this.$page.props.auth.user.name;
+            return this.$page.props.auth.user.username;
         }
     }
 }

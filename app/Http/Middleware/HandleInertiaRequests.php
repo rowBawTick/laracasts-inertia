@@ -45,6 +45,7 @@ class HandleInertiaRequests extends Middleware
                     'id' => $user?->id,
                     'name' => $user?->name,
                     'teams' => $user?->allTeams(),
+                    'username' => 'Chris',
                 ],
             ]
         ]);
