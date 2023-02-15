@@ -1,3 +1,37 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* @layer tells Tailwind which bucket the set of custom styles belongs to */
+@layer components {
+    .link {
+        @apply text-green-600 font-bold hover:underline;
+    }
+}
+
+/* @apply inlines any existing utility classes into your own custom css */
+/* useful for overriding 3rd party libraries */
+
+.link--active {
+    @apply text-blue-500 underline;
+}
+
+/* Any !important uses will be removed but if you need them then you can add !important to the end of @apply */
+/**
+.myStyle {
+    color: blue !important;
+}
+.otherStyle {
+    @apply myStyle;
+}
+-- This will give
+.otherStyle {
+    color: blue;
+}
+**/
+
+/* This will apply important to all styles*/
+/*.link--active {*/
+/*    @apply font-bold underline !important;*/
+/*}*/
+
