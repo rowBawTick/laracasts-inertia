@@ -37,12 +37,17 @@ Route::get('/dashboard', function () {
 Route::get('/users', function() {
     sleep(1);
     return Inertia::render('Users', [
-        'users' => ['Chris', 'Jon', 'Kelly', 'Rushabh']
+        'users' => ['Chris', 'Jon', 'Kelly', 'Rushabh'],
+        'time' => now()->toTimeString(),
     ]);
 });
 Route::get('/settings', function() {
     sleep(1);
     return Inertia::render('Settings');
+});
+
+Route::post('/logout', function () {
+   dd('logging out...');
 });
 
 //Route::middleware([
