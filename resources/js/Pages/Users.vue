@@ -12,17 +12,15 @@
     </Layout>
 </template>
 
-<script>
+<script setup>
 import Layout from "@/js/Layouts/Layout.vue";
 
-export default {
-    name: "Users",
-    props: {
-        users: Array,
-        time: String,
-    },
-    components: { Layout },
-}
+// Can use <script setup> (syntactic sugar for manually exporting an object that declares a setup method)
+// Then you don't need to define components
+defineProps({
+    users: Array,
+    time: String,
+});
 </script>
 
 <style scoped>

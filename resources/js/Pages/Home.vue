@@ -2,6 +2,8 @@
 import { Head, Link } from '@inertiajs/inertia-vue3';
 import Layout from "@/js/Layouts/Layout.vue";
 
+// Need to use with <script setup>
+// This is equivalent to export default plus registering components (see below)
 // defineProps({
 //     canLogin: Boolean,
 //     canRegister: Boolean,
@@ -25,7 +27,7 @@ export default {
         <h1 class="text-3xl font-bold">Home</h1>
     </Layout>
 
-<!-- Boiler plate? -->
+<!-- Inertia Boiler plate -->
 <!--    <div>-->
 <!--        <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center sm:pt-0">-->
 <!--            <div v-if="canLogin" class="hidden fixed top-0 right-0 px-6 py-4 sm:block">-->
