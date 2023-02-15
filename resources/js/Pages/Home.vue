@@ -18,14 +18,13 @@ export default {
         canRegister: Boolean,
         laravelVersion: String,
         phpVersion: String,
-    }
+    },
+    layout: Layout,
 }
 </script>
 
 <template>
-    <Layout>
-        <h1 class="text-3xl font-bold">Home</h1>
-    </Layout>
+    <h1 class="text-3xl font-bold">Home</h1>
 
 <!-- Inertia Boiler plate -->
 <!--    <div>-->
