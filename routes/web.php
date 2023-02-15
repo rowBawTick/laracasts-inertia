@@ -16,6 +16,7 @@ use Inertia\Inertia;
 */
 
 Route::get('/', function () {
+    sleep(1);
     return Inertia::render('Home', [
         'canLogin' => Route::has('login'),
         'canRegister' => Route::has('register'),
@@ -30,20 +31,34 @@ Route::get('/themes', function() {
     ]);
 });
 
-Route::middleware([
-    'auth:sanctum',
-    config('jetstream.auth_session'),
-    'verified',
-])->group(function () {
-    Route::get('/dashboard', function () {
-        return Inertia::render('Dashboard');
-    })->name('dashboard');
-    Route::get('/users', function() {
-        return Inertia::render('Users', [
-            'users' => ['Chris', 'Jon', 'Kelly', 'Rushabh']
-        ]);
-    });
-    Route::get('/settings', function() {
-        return Inertia::render('Settings');
-    });
+Route::get('/dashboard', function () {
+    return Inertia::render('Dashboard');
+})->name('dashboard');
+Route::get('/users', function() {
+    sleep(1);
+    return Inertia::render('Users', [
+        'users' => ['Chris', 'Jon', 'Kelly', 'Rushabh']
+    ]);
 });
+Route::get('/settings', function() {
+    sleep(1);
+    return Inertia::render('Settings');
+});
+
+//Route::middleware([
+//    'auth:sanctum',
+//    config('jetstream.auth_session'),
+//    'verified',
+//])->group(function () {
+//    Route::get('/dashboard', function () {
+//        return Inertia::render('Dashboard');
+//    })->name('dashboard');
+//    Route::get('/users', function() {
+//        return Inertia::render('Users', [
+//            'users' => ['Chris', 'Jon', 'Kelly', 'Rushabh']
+//        ]);
+//    });
+//    Route::get('/settings', function() {
+//        return Inertia::render('Settings');
+//    });
+//});
