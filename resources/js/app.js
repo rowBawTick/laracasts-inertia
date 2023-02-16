@@ -14,6 +14,7 @@ createInertiaApp({
     title: (title) => `${title} - ${appName}`,
     resolve: async name => {
         let page = await resolvePageComponent(`./Pages/${name}.vue`, import.meta.glob('./Pages/**/*.vue'));
+        // If layout option is set use that, otherwise use the default Layout (null coalescing assignment)
         page.default.layout ??= Layout;
 
         return page;

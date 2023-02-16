@@ -15,6 +15,7 @@
 // import Layout from "@/js/Layouts/Layout.vue";
 
 // KU Share: Declare additional options - unfortunately can't use layout option with composition API
+// Use the layout option to override the default (admin menu)
 export default {
     // layout: Layout,
 }
