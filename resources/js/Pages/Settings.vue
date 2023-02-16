@@ -5,10 +5,8 @@
 </template>
 
 <script>
-import Layout from "@/js/Layouts/Layout.vue";
 export default {
     name: "Settings",
-    layout: Layout,
 }
 </script>
 

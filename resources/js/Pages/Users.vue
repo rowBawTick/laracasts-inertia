@@ -12,11 +12,11 @@
 
 <script>
 // KU Share: normal <script>, executed in module scope (only once)
-import Layout from "@/js/Layouts/Layout.vue";
+// import Layout from "@/js/Layouts/Layout.vue";
 
 // KU Share: Declare additional options - unfortunately can't use layout option with composition API
 export default {
-    layout: Layout,
+    // layout: Layout,
 }
 </script>
 

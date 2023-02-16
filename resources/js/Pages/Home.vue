@@ -1,6 +1,5 @@
 <script>
 import { Head, Link } from '@inertiajs/inertia-vue3';
-import Layout from "@/js/Layouts/Layout.vue";
 
 // Need to use with <script setup>
 // This is equivalent to export default plus registering components (see below)
@@ -12,14 +11,13 @@ import Layout from "@/js/Layouts/Layout.vue";
 // });
 
 export default {
-    components: { Link, Head, Layout },
+    components: { Link, Head },
     props: {
         canLogin: Boolean,
         canRegister: Boolean,
         laravelVersion: String,
         phpVersion: String,
     },
-    layout: Layout,
 }
 </script>
 
