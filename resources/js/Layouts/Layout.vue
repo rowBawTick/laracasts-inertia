@@ -1,4 +1,12 @@
 <template>
+    <Head title="KU Share">
+        <!-- head-key ensures there is only one description per page if a child page has one too -->
+        <meta
+            type="description"
+            content="Sharing Knowledge in the KU Share"
+            head-key="description"
+        >
+    </Head>
     <section class="p-6 bg-gray-200">
         <header class="flex items-center justify-between">
             <div class="flex items-center">

@@ -1,5 +1,4 @@
 <script>
-import { Head, Link } from '@inertiajs/inertia-vue3';
 
 // Need to use with <script setup>
 // This is equivalent to export default plus registering components (see below)
@@ -11,7 +10,6 @@ import { Head, Link } from '@inertiajs/inertia-vue3';
 // });
 
 export default {
-    components: { Link, Head },
     props: {
         canLogin: Boolean,
         canRegister: Boolean,
@@ -22,5 +20,13 @@ export default {
 </script>
 
 <template>
+    <Head>
+        <title>Home</title>
+        <meta
+            type="description"
+            content="Home page in the KU Share"
+            head-key="description"
+        >
+    </Head>
     <h1 class="text-3xl font-bold">Home</h1>
 </template>
