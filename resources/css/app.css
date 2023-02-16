@@ -5,7 +5,7 @@
 /* @layer tells Tailwind which bucket the set of custom styles belongs to */
 @layer components {
     .link {
-        @apply text-green-600 font-bold hover:underline;
+        @apply text-black font-bold transition ease-in-out delay-150 hover:text-blue-300;
     }
 }
 
@@ -13,7 +13,7 @@
 /* useful for overriding 3rd party libraries */
 
 .link--active {
-    @apply text-blue-500 underline;
+    @apply text-blue-600;
 }
 
 /* Any !important uses will be removed but if you need them then you can add !important to the end of @apply */

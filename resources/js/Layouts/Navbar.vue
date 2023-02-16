@@ -14,7 +14,7 @@ export default {
 <template>
     <div class="flex items-center">
         <nav>
-            <ul class="flex list-disc space-x-4 list-inside">
+            <ul class="flex space-x-4 list-inside">
                 <li>
                     <NavLink href="/" :active="$page.url === '/'">Home</NavLink>
                 </li>
