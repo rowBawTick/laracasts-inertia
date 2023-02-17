@@ -1,7 +1,7 @@
 <template>
     The users are:
-    <div v-for="user in users">
-        {{ user }}
+    <div v-for="user in users" :key="user.id">
+        {{ user.name }}
     </div>
     <!-- To allow for scrolling and then preserve the scroll position-->
     <div style="margin-top: 1200px">

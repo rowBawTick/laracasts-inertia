@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\User;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -37,7 +38,14 @@ Route::get('/dashboard', function () {
 Route::get('/users', function() {
     sleep(1);
     return Inertia::render('Users', [
-        'users' => ['Chris', 'Jon', 'Kelly', 'Rushabh'],
+//        KU Share: Laravel's map(fn) method to reduce data returned to front end
+        'users' => User::all()->map(fn($user) => [
+            'name' => $user->name
+        ]),
+        'usersOld' => User::all()->map(function ($user) {
+
+            return $user->name;
+        }),
         'time' => now()->toTimeString(),
     ]);
 });
