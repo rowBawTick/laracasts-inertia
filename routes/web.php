@@ -38,12 +38,20 @@ Route::get('/dashboard', function () {
 Route::get('/users', function() {
     sleep(1);
     return Inertia::render('Users', [
-//        KU Share: Laravel's map(fn) method to reduce data returned to front end
+        // KU Share: paginated users returns an object with extra info (currentPage, nextPage, url links, etc)
+        // But it does return all the user data from the database too (because it creates a new colleciton)
+        'paginatedUsers' => User::paginate(10),
+        // KU share: Can use ->through() to apply map to the current slice of items rather than creating a new collection
+        'restrictedPaginatedUsers' => User::paginate(10)->through(fn($user) => [
+            'id' => $user->id,
+            'name' => $user->name,
+        ]),
+        // KU Share: Laravel's map(fn) method to reduce data returned to front end
         'users' => User::all()->map(fn($user) => [
-            'name' => $user->name
+            'id' => $user->id,
+            'name' => $user->name,
         ]),
         'usersOld' => User::all()->map(function ($user) {
-
             return $user->name;
         }),
         'time' => now()->toTimeString(),
