@@ -38,8 +38,7 @@ Route::get('/dashboard', function () {
 Route::get('/users', function() {
 //    sleep(1);
     return Inertia::render('Users', [
-        // KU Share: paginated users returns an object with extra info (currentPage, nextPage, url links, etc)
-        // But it does return all the user data from the database too (because it creates a new colleciton)
+        // This returns all the user data from the database (because it creates a new collection)
         'paginatedUsers' => User::paginate(10),
         // KU share: Can use ->through() to apply map to the current slice of items rather than creating a new collection
         'restrictedPaginatedUsers' => User::query()
@@ -47,12 +46,13 @@ Route::get('/users', function() {
             ->when(Request::input('search'), function($query, $searchTerm) {
                 $query->where('name', 'like', "%{$searchTerm}%");
             })
+            // KU Share new: paginated users returns an object with extra info (currentPage, nextPage, url links, etc)
             ->paginate(10)
             // KU share new: ->withQueryString() keeps the query string when switching between paginated links
             ->withQueryString()
             ->through(fn($user) => [
-            'id' => $user->id,
-            'name' => $user->name,
+                'id' => $user->id,
+                'name' => $user->name,
         ]),
         // filters send a list of approved filters to the front end
         'filters' => Request::only(['search']),
