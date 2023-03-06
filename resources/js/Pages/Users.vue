@@ -1,12 +1,20 @@
 <template>
-    <Pagination :links="paginatedUsers.links" class="my-6"></Pagination>
+    <Head title="Users" />
+
+    <div class="flex justify-between mb-6">
+        <h1 class="text-3xl">Users</h1>
+
+        <input v-model="searchTerm" type="text" placeholder="Search..." class="border px-2 rounded-lg">
+    </div>
+
+    <Pagination :links="restrictedPaginatedUsers.links" class="my-6"></Pagination>
     <div class="flex flex-col">
         <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
             <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
                 <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
                     <table class="min-w-full divide-y divide-gray-200">
                         <tbody class="bg-white divide-y divide-gray-200">
-                        <tr v-for="user in paginatedUsers.data" :key="user.id">
+                        <tr v-for="user in restrictedPaginatedUsers.data" :key="user.id">
                             <td class="px-6 py-4 whitespace-nowrap">
                                 <div class="flex items-center">
                                     <div>
@@ -50,15 +58,31 @@ export default {
 
 <script setup>
 import Pagination from "@/js/Shared/Pagination.vue";
+import { ref, watch } from 'vue';
+import { Inertia } from "@inertiajs/inertia";
 // KU Share: executed in setup() scope (for each instance)
 
 // KU Share: Can use <script setup> (syntactic sugar for manually exporting an object that declares a setup method)
 // Then you don't need to define components (composition API)
-defineProps({
-    paginatedUsers: Object,
+let props = defineProps({
+    restrictedPaginatedUsers: Object,
+    filters: Object,
     users: Array,
     usersOld: Array,
     time: String,
+});
+
+let searchTerm = ref(props.filters.search);
+
+watch(searchTerm, value => {
+    // KU Share new: Use preserveState: true so that the page doesn't refresh and you keep the state of the searchTerm.
+    Inertia.get('/users', { search: value },
+        {
+            preserveState: true,
+            // KU Share new: replaces the current url (not adding to history with every change to search term)
+            // Better functionality for back button too (goes to previous page rather than previous searchTerm)
+            replace: true,
+        });
 });
 </script>
 

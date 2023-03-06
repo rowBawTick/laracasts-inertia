@@ -25,7 +25,7 @@ export default {
     props: {
         links: Array,
     },
-    // KU Share: Using multiple class/style bindings dependent on parameters on v-for loop
+    // KU Share new: Using multiple class/style bindings dependent on parameters on v-for loop
     methods: {
         getLinkClass(link) {
             return link.active ? 'font-bold text-blue-500' : '';

@@ -20,7 +20,8 @@ export default {
                 </li>
                 <li>
                     <!-- If using query strings then can check the start -->
-                    <NavLink href="/users?foo=bar" :active="$page.url.startsWith('/users')">Users</NavLink>
+<!--                    <NavLink href="/users?search=chris" :active="$page.url.startsWith('/users')">Users</NavLink>-->
+                    <NavLink href="/users" :active="$page.url.startsWith('/users')">Users</NavLink>
                 </li>
                 <li>
                     <!-- Can also match against the page component -->

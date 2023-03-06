@@ -17,7 +17,7 @@ use Inertia\Inertia;
 */
 
 Route::get('/', function () {
-    sleep(1);
+//    sleep(1);
     return Inertia::render('Home', [
         'canLogin' => Route::has('login'),
         'canRegister' => Route::has('register'),
@@ -36,16 +36,26 @@ Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->name('dashboard');
 Route::get('/users', function() {
-    sleep(1);
+//    sleep(1);
     return Inertia::render('Users', [
         // KU Share: paginated users returns an object with extra info (currentPage, nextPage, url links, etc)
         // But it does return all the user data from the database too (because it creates a new colleciton)
         'paginatedUsers' => User::paginate(10),
         // KU share: Can use ->through() to apply map to the current slice of items rather than creating a new collection
-        'restrictedPaginatedUsers' => User::paginate(10)->through(fn($user) => [
+        'restrictedPaginatedUsers' => User::query()
+            // KU Share new: ->when() request matches condition, append to query in this way
+            ->when(Request::input('search'), function($query, $searchTerm) {
+                $query->where('name', 'like', "%{$searchTerm}%");
+            })
+            ->paginate(10)
+            // KU share new: ->withQueryString() keeps the query string when switching between paginated links
+            ->withQueryString()
+            ->through(fn($user) => [
             'id' => $user->id,
             'name' => $user->name,
         ]),
+        // filters send a list of approved filters to the front end
+        'filters' => Request::only(['search']),
         // KU Share: Laravel's map(fn) method to reduce data returned to front end
         'users' => User::all()->map(fn($user) => [
             'id' => $user->id,
@@ -58,7 +68,8 @@ Route::get('/users', function() {
     ]);
 });
 Route::get('/settings', function() {
-    sleep(1);
+    // sleep was just to show the progress bar working
+//    sleep(1);
     return Inertia::render('Settings');
 });
 
