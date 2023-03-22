@@ -37,7 +37,7 @@ Route::get('/dashboard', function () {
 })->name('dashboard');
 Route::get('/users', function() {
 //    sleep(1);
-    return Inertia::render('Users', [
+    return Inertia::render('Users/Index', [
         // This returns all the user data from the database (because it creates a new collection)
         'paginatedUsers' => User::paginate(10),
         // KU share: Can use ->through() to apply map to the current slice of items rather than creating a new collection
@@ -67,6 +67,11 @@ Route::get('/users', function() {
         'time' => now()->toTimeString(),
     ]);
 });
+
+Route::get('/users/create', function () {
+   return Inertia::render('Users/Create');
+});
+
 Route::get('/settings', function() {
     // sleep was just to show the progress bar working
 //    sleep(1);
@@ -75,6 +80,22 @@ Route::get('/settings', function() {
 
 Route::post('/logout', function () {
    dd('logging out...');
+});
+
+// TODO: chris 22/03/2023 - KU Share: This has to be in web.php - why doesn't it work in api.php?
+Route::post('/users', function () {
+    // Validate the request
+    $validatedAttributes = Request::validate([
+        'name' => 'required',
+        'email' => ['required', 'email'],
+        'password' => 'required',
+    ]);
+
+    // Create the user
+    User::create($validatedAttributes);
+
+    // redirect
+    return redirect('/users');
 });
 
 //Route::middleware([
