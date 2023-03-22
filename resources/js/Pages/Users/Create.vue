@@ -17,7 +17,7 @@
                    required
             >
             <!-- KU Share: To see the failed validation from the server need to remove <input>'s required attribute -->
-            <div v-if="errors.name" v-text="errors.name"
+            <div v-if="form.errors.name" v-text="form.errors.name"
                  class="text-red-500 text-xs mt-1"></div>
         </div>
 
@@ -33,7 +33,7 @@
                    id="email"
                    required
             >
-            <div v-if="errors.email" v-text="errors.email"
+            <div v-if="form.errors.email" v-text="form.errors.email"
                  class="text-red-500 text-xs mt-1"></div>
         </div>
 
@@ -48,12 +48,12 @@
                    id="password"
                    required
             >
-            <div v-if="errors.password" v-text="errors.password"
+            <div v-if="form.errors.password" v-text="form.errors.password"
                  class="text-red-500 text-xs mt-1"></div>
         </div>
 
         <div class="mb-6">
-            <button type="submit" :disabled="isProcessing"
+            <button type="submit" :disabled="form.processing"
                     class="bg-blue-700 text-yellow-200 rounded py-2 px-4 hover:bg-blue-500">
                 Submit
             </button>
@@ -64,28 +64,51 @@
 </template>
 
 <script setup>
-import { reactive, ref } from 'vue';
-import {Inertia} from "@inertiajs/inertia";
+import {useForm} from "@inertiajs/inertia-vue3";
 
 defineProps({
     errors: Object
 });
 
-let form = reactive({
+let form = useForm({
     name: '',
     email: '',
     password: '',
 });
 
-let isProcessing = ref(false);
+// Reset the form after 5s
+// setTimeout(() => {
+//     form.reset();
+// }, 5000)
 
 let submit = () => {
-    Inertia.post('/users', form, {
-        onStart: () => { isProcessing.value = true },
-        onFinish: () => { isProcessing.value = false },
-    });
+    form.post('/users');
 };
 
+</script>
+
+<script>
+// My guess at doing it with the options API
+
+// import {Inertia} from "@inertiajs/inertia";
+// export default {
+//     data() {
+//         return {
+//             name: '',
+//             email: '',
+//             password: '',
+//         }
+//     },
+//     computed: {
+//         form() {
+//             return this.$inertia.form({
+//                 name: this.name,
+//                 email: this.email,
+//                 password: this.password
+//             })
+//         }
+//     }
+// }
 </script>
 
 <style scoped>
