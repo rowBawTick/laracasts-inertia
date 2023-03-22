@@ -84,6 +84,8 @@ Route::post('/logout', function () {
 
 // TODO: chris 22/03/2023 - KU Share: This has to be in web.php - why doesn't it work in api.php?
 Route::post('/users', function () {
+    // KU Share: Lesson 21: To test throttling sleep for 3s and try submitting lots of forms after each other
+//    sleep(3);
     // Validate the request
     $validatedAttributes = Request::validate([
         'name' => 'required',
