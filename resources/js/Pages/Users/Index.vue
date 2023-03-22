@@ -61,10 +61,14 @@ export default {
 </script>
 
 <script setup>
+// KU Share: executed in setup() scope (for each instance)
 import Pagination from "@/js/Shared/Pagination.vue";
 import { ref, watch } from 'vue';
 import { Inertia } from "@inertiajs/inertia";
-// KU Share: executed in setup() scope (for each instance)
+// KU Share: Lesson 22: throttle makes a request per wait time specified (300ms).
+// debounce makes one request after the variable hasn't in 300ms
+// import {throttle} from "lodash";
+import {debounce} from "lodash";
 
 // KU Share: Can use <script setup> (syntactic sugar for manually exporting an object that declares a setup method)
 // Then you don't need to define components (composition API)
@@ -78,7 +82,7 @@ let props = defineProps({
 
 let searchTerm = ref(props.filters.search);
 
-watch(searchTerm, value => {
+watch(searchTerm, debounce(function(value) {
     // KU Share new: Use preserveState: true so that the page doesn't refresh and you keep the state of the searchTerm.
     Inertia.get('/users', { search: value },
         {
@@ -87,7 +91,7 @@ watch(searchTerm, value => {
             // Better functionality for back button too (goes to previous page rather than previous searchTerm)
             replace: true,
         });
-});
+}, 300));
 </script>
 
 <style scoped>
