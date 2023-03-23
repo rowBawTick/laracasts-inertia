@@ -1,89 +1,71 @@
-<script setup>
-import { Head, Link, useForm } from '@inertiajs/inertia-vue3';
-import AuthenticationCard from '@/js/Components/AuthenticationCard.vue';
-import AuthenticationCardLogo from '@/js/Components/AuthenticationCardLogo.vue';
-import Checkbox from '@/js/Components/Checkbox.vue';
-import InputError from '@/js/Components/InputError.vue';
-import InputLabel from '@/js/Components/InputLabel.vue';
-import PrimaryButton from '@/js/Components/PrimaryButton.vue';
-import TextInput from '@/js/Components/TextInput.vue';
+<template>
+    <Head title="Log In" />
 
-defineProps({
-    canResetPassword: Boolean,
-    status: String,
-});
+    <main class="grid place-items-center min-h-screen">
+        <section class="bg-white p-8 rounded-xl max-w-md mx-auto border w-full">
+            <h1 class="text-3xl mb-6">Log In</h1>
 
-const form = useForm({
-    email: '',
-    password: '',
-    remember: false,
-});
+            <form @submit.prevent="submit">
+                <!-- Email -->
+                <div class="mb-6">
+                    <label class="block mb-2 uppercase font-bold text-xs text-gray-700" for="email"> Email </label>
+                    <input v-model="form.email"
+                           class="border p-2 w-full rounded"
+                           type="email" name="email" id="email" required />
+                    <div v-if="form.errors.email" v-text="form.errors.email" class="text-red-500 text-xs mt-1"></div>
+                </div>
 
-const submit = () => {
-    form.transform(data => ({
-        ...data,
-        remember: form.remember ? 'on' : '',
-    })).post(route('login'), {
-        onFinish: () => form.reset('password'),
-    });
+                <!-- password -->
+                <div class="mb-6">
+                    <label class="block mb-2 uppercase font-bold text-xs text-gray-700" for="password">
+                        Password
+                    </label>
+                    <input
+                        v-model="form.password" required
+                        class="border p-2 w-full rounded"
+                        type="password" name="password" id="password"
+                    />
+                    <div v-if="form.errors.password" v-text="form.errors.password" class="text-red-500 text-xs mt-1"></div>
+                </div>
+
+                <div>
+                    <button
+                        type="submit"
+                        class="bg-blue-400 text-white rounded py-2 px-4 hover:bg-blue-500"
+                        :disabled="form.processing"
+                    >
+                        Log In
+                    </button>
+                </div>
+            </form>
+        </section>
+    </main>
+</template>
+
+<script>
+// import {Inertia} from "@inertiajs/inertia";
+
+export default {
+    layout: '',
+// TODO: chris 22/03/2023 - Using options API?
+//     computed: {
+//         form() {
+//             return this.$inertia.form({
+//                 email: this.email,
+//                 password: this.password
+//             })
+//         }
+//     }
 };
 </script>
 
-<template>
-    <Head title="Log in" />
-
-    <AuthenticationCard>
-        <template #logo>
-            <AuthenticationCardLogo />
-        </template>
-
-        <div v-if="status" class="mb-4 font-medium text-sm text-green-600">
-            {{ status }}
-        </div>
-
-        <form @submit.prevent="submit">
-            <div>
-                <InputLabel for="email" value="Email" />
-                <TextInput
-                    id="email"
-                    v-model="form.email"
-                    type="email"
-                    class="mt-1 block w-full"
-                    required
-                    autofocus
-                />
-                <InputError class="mt-2" :message="form.errors.email" />
-            </div>
-
-            <div class="mt-4">
-                <InputLabel for="password" value="Password" />
-                <TextInput
-                    id="password"
-                    v-model="form.password"
-                    type="password"
-                    class="mt-1 block w-full"
-                    required
-                    autocomplete="current-password"
-                />
-                <InputError class="mt-2" :message="form.errors.password" />
-            </div>
-
-            <div class="block mt-4">
-                <label class="flex items-center">
-                    <Checkbox v-model:checked="form.remember" name="remember" />
-                    <span class="ml-2 text-sm text-gray-600">Remember me</span>
-                </label>
-            </div>
-
-            <div class="flex items-center justify-end mt-4">
-                <Link v-if="canResetPassword" :href="route('password.request')" class="underline text-sm text-gray-600 hover:text-gray-900">
-                    Forgot your password?
-                </Link>
-
-                <PrimaryButton class="ml-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-                    Log in
-                </PrimaryButton>
-            </div>
-        </form>
-    </AuthenticationCard>
-</template>
+<script setup>
+import { useForm } from '@inertiajs/inertia-vue3';
+let form = useForm({
+    email: '',
+    password: '',
+});
+let submit = () => {
+    form.post('/login');
+};
+</script>

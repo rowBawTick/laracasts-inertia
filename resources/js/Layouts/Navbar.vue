@@ -31,13 +31,9 @@ export default {
                 <!-- Can just have a button and handle it in web.php.
                     Inertia makes an axios request and sorts cookies for you too -->
                 <li>
-                    <Link class="link"
-                          href="/logout"
-                          method="post"
-                          as="button"
-                          :data="{ foo: 'bar' }"
-                    >Logout
-                    </Link>
+                    <NavLink href="/logout" method="post" as="button">
+                        Log Out
+                    </NavLink>
                 </li>
             </ul>
         </nav>

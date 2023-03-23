@@ -41,7 +41,7 @@ export default {
     components: { Navbar },
     computed: {
         username() {
-            return this.$page.props.auth.user.username;
+            return this.$page.props.auth.user.name;
         }
     }
 }
